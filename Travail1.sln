@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travail1", "Travail1\Travail1.csproj", "{BBB82664-88A7-4C77-BCE1-06D4A872E921}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathSelection", "PathSelection\PathSelection.csproj", "{CC4DB624-A06E-416C-BD13-4F922DBBE6B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BBB82664-88A7-4C77-BCE1-06D4A872E921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBB82664-88A7-4C77-BCE1-06D4A872E921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBB82664-88A7-4C77-BCE1-06D4A872E921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC4DB624-A06E-416C-BD13-4F922DBBE6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4DB624-A06E-416C-BD13-4F922DBBE6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4DB624-A06E-416C-BD13-4F922DBBE6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4DB624-A06E-416C-BD13-4F922DBBE6B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
