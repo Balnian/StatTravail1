@@ -34,19 +34,24 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.NUD_Taille = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.NUD_Copie = new System.Windows.Forms.NumericUpDown();
+            this.TB_Nom = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.BT_Source = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TB_Source = new System.Windows.Forms.TextBox();
+            this.BT_Sortie = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TB_Sortie = new System.Windows.Forms.TextBox();
+            this.BT_Executer = new System.Windows.Forms.Button();
+            this.BT_Quitter = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Taille)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Copie)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,49 +112,14 @@
             // 
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.NUD_Copie);
+            this.groupBox3.Controls.Add(this.TB_Nom);
             this.groupBox3.Location = new System.Drawing.Point(12, 86);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(260, 77);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nom de sortie et nombre de copie";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(157, 40);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(91, 20);
-            this.numericUpDown1.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(15, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.textBox2);
-            this.groupBox4.Location = new System.Drawing.Point(12, 170);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(260, 90);
-            this.groupBox4.TabIndex = 5;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Document et Sortie";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Nom fichier de sortie :";
             // 
             // label2
             // 
@@ -160,12 +130,53 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Nombre de copie :";
             // 
-            // textBox2
+            // label1
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 43);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(156, 20);
-            this.textBox2.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Nom fichier de sortie :";
+            // 
+            // NUD_Copie
+            // 
+            this.NUD_Copie.Location = new System.Drawing.Point(157, 40);
+            this.NUD_Copie.Name = "NUD_Copie";
+            this.NUD_Copie.Size = new System.Drawing.Size(91, 20);
+            this.NUD_Copie.TabIndex = 1;
+            // 
+            // TB_Nom
+            // 
+            this.TB_Nom.Location = new System.Drawing.Point(15, 40);
+            this.TB_Nom.Name = "TB_Nom";
+            this.TB_Nom.Size = new System.Drawing.Size(100, 20);
+            this.TB_Nom.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.BT_Sortie);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.TB_Sortie);
+            this.groupBox4.Controls.Add(this.BT_Source);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.TB_Source);
+            this.groupBox4.Location = new System.Drawing.Point(12, 170);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(260, 132);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Document et Sortie";
+            // 
+            // BT_Source
+            // 
+            this.BT_Source.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_Source.Location = new System.Drawing.Point(166, 43);
+            this.BT_Source.Name = "BT_Source";
+            this.BT_Source.Size = new System.Drawing.Size(41, 20);
+            this.BT_Source.TabIndex = 2;
+            this.BT_Source.Text = "°°°";
+            this.BT_Source.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -176,20 +187,64 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Source :";
             // 
-            // button1
+            // TB_Source
             // 
-            this.button1.Location = new System.Drawing.Point(164, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.TB_Source.Location = new System.Drawing.Point(15, 43);
+            this.TB_Source.Name = "TB_Source";
+            this.TB_Source.Size = new System.Drawing.Size(156, 20);
+            this.TB_Source.TabIndex = 0;
+            // 
+            // BT_Sortie
+            // 
+            this.BT_Sortie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_Sortie.Location = new System.Drawing.Point(166, 91);
+            this.BT_Sortie.Name = "BT_Sortie";
+            this.BT_Sortie.Size = new System.Drawing.Size(41, 20);
+            this.BT_Sortie.TabIndex = 5;
+            this.BT_Sortie.Text = "°°°";
+            this.BT_Sortie.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Sortie :";
+            // 
+            // TB_Sortie
+            // 
+            this.TB_Sortie.Location = new System.Drawing.Point(15, 91);
+            this.TB_Sortie.Name = "TB_Sortie";
+            this.TB_Sortie.Size = new System.Drawing.Size(156, 20);
+            this.TB_Sortie.TabIndex = 3;
+            // 
+            // BT_Executer
+            // 
+            this.BT_Executer.Location = new System.Drawing.Point(108, 323);
+            this.BT_Executer.Name = "BT_Executer";
+            this.BT_Executer.Size = new System.Drawing.Size(75, 23);
+            this.BT_Executer.TabIndex = 6;
+            this.BT_Executer.Text = "Exécuter";
+            this.BT_Executer.UseVisualStyleBackColor = true;
+            // 
+            // BT_Quitter
+            // 
+            this.BT_Quitter.Location = new System.Drawing.Point(190, 322);
+            this.BT_Quitter.Name = "BT_Quitter";
+            this.BT_Quitter.Size = new System.Drawing.Size(75, 23);
+            this.BT_Quitter.TabIndex = 7;
+            this.BT_Quitter.Text = "Quitter";
+            this.BT_Quitter.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 358);
+            this.Controls.Add(this.BT_Quitter);
+            this.Controls.Add(this.BT_Executer);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -203,7 +258,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Taille)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Copie)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
@@ -218,14 +273,19 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.NumericUpDown NUD_Taille;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown NUD_Copie;
+        private System.Windows.Forms.TextBox TB_Nom;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BT_Source;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TB_Source;
+        private System.Windows.Forms.Button BT_Sortie;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TB_Sortie;
+        private System.Windows.Forms.Button BT_Executer;
+        private System.Windows.Forms.Button BT_Quitter;
     }
 }
 
