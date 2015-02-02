@@ -39,12 +39,12 @@
             this.NUD_Copie = new System.Windows.Forms.NumericUpDown();
             this.TB_Nom = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.BT_Source = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TB_Source = new System.Windows.Forms.TextBox();
             this.BT_Sortie = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.TB_Sortie = new System.Windows.Forms.TextBox();
+            this.BT_Source = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TB_Source = new System.Windows.Forms.TextBox();
             this.BT_Executer = new System.Windows.Forms.Button();
             this.BT_Quitter = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -168,32 +168,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Document et Sortie";
             // 
-            // BT_Source
-            // 
-            this.BT_Source.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_Source.Location = new System.Drawing.Point(166, 43);
-            this.BT_Source.Name = "BT_Source";
-            this.BT_Source.Size = new System.Drawing.Size(41, 20);
-            this.BT_Source.TabIndex = 2;
-            this.BT_Source.Text = "°°°";
-            this.BT_Source.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Source :";
-            // 
-            // TB_Source
-            // 
-            this.TB_Source.Location = new System.Drawing.Point(15, 43);
-            this.TB_Source.Name = "TB_Source";
-            this.TB_Source.Size = new System.Drawing.Size(156, 20);
-            this.TB_Source.TabIndex = 0;
-            // 
             // BT_Sortie
             // 
             this.BT_Sortie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -220,6 +194,33 @@
             this.TB_Sortie.Size = new System.Drawing.Size(156, 20);
             this.TB_Sortie.TabIndex = 3;
             // 
+            // BT_Source
+            // 
+            this.BT_Source.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_Source.Location = new System.Drawing.Point(166, 43);
+            this.BT_Source.Name = "BT_Source";
+            this.BT_Source.Size = new System.Drawing.Size(41, 20);
+            this.BT_Source.TabIndex = 2;
+            this.BT_Source.Text = "°°°";
+            this.BT_Source.UseVisualStyleBackColor = true;
+            this.BT_Source.Click += new System.EventHandler(this.BT_Source_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Source :";
+            // 
+            // TB_Source
+            // 
+            this.TB_Source.Location = new System.Drawing.Point(15, 43);
+            this.TB_Source.Name = "TB_Source";
+            this.TB_Source.Size = new System.Drawing.Size(156, 20);
+            this.TB_Source.TabIndex = 0;
+            // 
             // BT_Executer
             // 
             this.BT_Executer.Location = new System.Drawing.Point(108, 323);
@@ -228,6 +229,7 @@
             this.BT_Executer.TabIndex = 6;
             this.BT_Executer.Text = "Exécuter";
             this.BT_Executer.UseVisualStyleBackColor = true;
+            this.BT_Executer.Click += new System.EventHandler(this.BT_Executer_Click);
             // 
             // BT_Quitter
             // 
