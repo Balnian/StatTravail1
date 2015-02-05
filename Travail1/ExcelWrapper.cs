@@ -34,13 +34,13 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 1; i < 3; i++)
-			{
+            for (int i = 1; i < 3 ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+            {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
-              
+
                 Data.Add(OBJ.ToString());
-			}
+            }
             return Data;
         }
 
@@ -48,7 +48,7 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 0; i < Wrs.Rows.Count; i++)
+            for (int i = 1; i < Wrs.Rows.Count  && Wrs.Cells.Value2 != null; i++)
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;
@@ -66,7 +66,24 @@ namespace Travail1
  
         }
 
-
+        public void  Write()
+        {
+           // try
+           // {
+           //     Workbook newWorkbook = new Workbook();
+           //     Worksheet newWorksheet;
+           //     object misValue = System.Reflection.Missing.Value;
+           //     App.Workbooks.Add(newWorkbook);
+           //     newWorksheet = App.Worksheets.get_Item(1);
+           //     newWorksheet.Cells[1, 1] = "test";
+           //     newWorkbook.SaveAs(@"C:\Users\Razma\Desktop\test.xls");
+           //     newWorkbook.Close();
+           // }
+           //catch()
+           // {
+           //}
+        
+        }
        //private ~ExcelWrapper()
        //{
        //    Wrb.Close();
