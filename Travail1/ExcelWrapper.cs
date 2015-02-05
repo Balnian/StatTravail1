@@ -25,22 +25,20 @@ namespace Travail1
         }
         public void Open()
         {
-            App = new Application();
-            App.Workbooks.Open(PathSource);
-            Wrb = App.Workbooks.get_Item(0);
-            Wrs = Wrb.Worksheets.get_Item(0);
-            Wrs.Activate();
-            Data2.ToString();
+            App = new Application();       
+            Wrb =   App.Workbooks.Open(PathSource);
+            Wrs = Wrb.ActiveSheet;         
         }
         
         public System.Collections.Specialized.StringCollection GetLine(int Line)
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 0; i < Wrs.Columns.Count; i++)
+            for (int i = 1; i < 3; i++)
 			{
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
+              
                 Data.Add(OBJ.ToString());
 			}
             return Data;
@@ -62,17 +60,18 @@ namespace Travail1
         public string GetCell(int Line, int Col)
         {
             Range carry;
-
             carry = Wrs.Cells[Line, Col];
             object OBJ = carry.Value2;
             return OBJ.ToString();
  
         }
-        public ~ExcelWrapper()
-        {
-            Wrb.Close();
-           // App.Close()
-        }
+
+
+       //private ~ExcelWrapper()
+       //{
+       //    Wrb.Close();
+       //    App.Close();
+       // }
 
 
     }
