@@ -15,6 +15,7 @@ namespace Travail1
         private String Destination;
         private String Sources;
         private List<string> Info = new List<string>();
+        private int[] Number;
         public Form1()
         {
             InitializeComponent();
@@ -41,7 +42,6 @@ namespace Travail1
                 //AddRecentFile(OpenFile.FileName);
             }
         }
-
         private void SavedFile()
         {
 
@@ -88,6 +88,13 @@ namespace Travail1
         private void AleatoirFunction()
         { 
         
+        
+        }
+
+        private int GenerateRandom()
+        {
+          Random rnd = new Random();
+          return rnd.Next(1, 2);
         
         }
         private void ReadInfo()

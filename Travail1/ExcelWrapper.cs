@@ -22,8 +22,8 @@ namespace Travail1
         public ExcelWrapper(String Source, String Destination)
         {
             PathSource = Source;
-            this.Destination = Destination;           
-
+            this.Destination = Destination;
+           
         }
         public void Open()
         {              
@@ -86,20 +86,15 @@ namespace Travail1
         public  System.Collections.Specialized.StringCollection GetAllData()
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
-           
-        
+                   
             for (int i = 1; i < Wrs.UsedRange.Rows.Count; i++)
             {
                for (int j = 1; j<Wrs.UsedRange.Columns.Count ; j++)
                {
                   Data.Add(GetCell(i, j));
-               }
-           
+               }          
             }
-            return Data;
-
-         
-           
+            return Data;                 
         }
        ~ExcelWrapper()
         {
