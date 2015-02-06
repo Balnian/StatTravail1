@@ -42,11 +42,11 @@ namespace Travail1
         private void BT_Executer_Click(object sender, EventArgs e)
         {
 
-            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+            //System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             ExcelWrapper EW = new ExcelWrapper(TB_Source.Text, "Baba");
             //EW.Open();
-            //Data = EW.GetLine(1);
-            //foreach( string OBJ in Data)
+            //Data = EW.GetColumn(1);
+            //foreach (string OBJ in Data)
             //{
 
             //    MessageBox.Show(OBJ);

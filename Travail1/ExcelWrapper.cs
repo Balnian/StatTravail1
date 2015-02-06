@@ -9,7 +9,7 @@ namespace Travail1
 {
     class ExcelWrapper
     {
-        private Application App;
+        private Application App = new Application();
         private Workbook Wrb;
         private Worksheet Wrs;
         private String PathSource;
@@ -25,7 +25,7 @@ namespace Travail1
         }
         public void Open()
         {
-            App = new Application();       
+               
             Wrb =   App.Workbooks.Open(PathSource);
             Wrs = Wrb.ActiveSheet;         
         }
@@ -34,7 +34,8 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 1; i < 3 ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+       
+             for (int i = 1; i <3 ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
             {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
@@ -68,23 +69,20 @@ namespace Travail1
 
         public void  Write()
         {
-           // try
-           // {
-           //     Workbook newWorkbook = new Workbook();
-           //     Worksheet newWorksheet;
-           //     object misValue = System.Reflection.Missing.Value;
-           //     App.Workbooks.Add(newWorkbook);
-           //     newWorksheet = App.Worksheets.get_Item(1);
-           //     newWorksheet.Cells[1, 1] = "test";
-           //     newWorkbook.SaveAs(@"C:\Users\Razma\Desktop\test.xls");
-           //     newWorkbook.Close();
-           // }
-           //catch()
-           // {
-           //}
-        
+
+                Workbook newWorkbook;
+                Worksheet newWorksheet;
+                object misValue = System.Reflection.Missing.Value;
+                newWorkbook = App.Workbooks.Add();
+                newWorksheet = (Worksheet)newWorkbook.Worksheets.Item[1];
+                newWorksheet.Cells[1, 1] = "test";
+                newWorkbook.SaveAs(@"C:\Users\Razma\Desktop\testtt.xls");
+                newWorkbook.Close();
+                App.Quit();
+         
+         
         }
-       //private ~ExcelWrapper()
+       //private ~ExcelWrapper() 
        //{
        //    Wrb.Close();
        //    App.Close();
