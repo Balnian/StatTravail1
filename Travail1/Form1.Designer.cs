@@ -177,6 +177,7 @@
             this.BT_Sortie.TabIndex = 5;
             this.BT_Sortie.Text = "°°°";
             this.BT_Sortie.UseVisualStyleBackColor = true;
+            this.BT_Sortie.Click += new System.EventHandler(this.BT_Sortie_Click);
             // 
             // label4
             // 
