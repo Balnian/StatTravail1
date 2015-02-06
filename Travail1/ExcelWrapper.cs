@@ -4,28 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
-
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace Travail1
 {
     class ExcelWrapper
     {
-        private Application App;
+        private Application App = new Application();
         private Workbook Wrb;
         private Worksheet Wrs;
         private String PathSource;
+        private String Destination;
         private String Name;
         private System.Collections.Specialized.StringCollection Data2;
         public int Length {get;set;}
         public int Width{get;set;}
-        public ExcelWrapper(String Source, String Name)
+        public ExcelWrapper(String Source, String Destination)
         {
             PathSource = Source;
-            this.Name = Name; 
-            //App = App.Workbooks.Open("csharp.net-informations.xls", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            this.Destination = Destination;           
+
         }
         public void Open()
-        {
-            App = new Application();       
+        {              
             Wrb =   App.Workbooks.Open(PathSource);
             Wrs = Wrb.ActiveSheet;         
         }
@@ -34,11 +35,15 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
+<<<<<<< HEAD
             for (int i = 1; i < Wrs.Columns.Count ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+=======
+       
+             for (int i = 1; i < Wrs.UsedRange.Columns.Count ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+>>>>>>> origin/master
             {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
-
                 Data.Add(OBJ.ToString());
             }
             return Data;
@@ -48,7 +53,11 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
+<<<<<<< HEAD
             for (int i = 1; i < 2  && Wrs.Cells.Value2 != null; i++)
+=======
+            for (int i = 1; i < Wrs.UsedRange.Rows.Count  ; i++)
+>>>>>>> origin/master
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;
@@ -62,33 +71,49 @@ namespace Travail1
             Range carry;
             carry = Wrs.Cells[Line, Col];
             object OBJ = carry.Value2;
+
             return OBJ.ToString();
- 
         }
 
-        public void  Write()
+        public void  Write(List<object> data, String FileName)
         {
-           // try
-           // {
-           //     Workbook newWorkbook = new Workbook();
-           //     Worksheet newWorksheet;
-           //     object misValue = System.Reflection.Missing.Value;
-           //     App.Workbooks.Add(newWorkbook);
-           //     newWorksheet = App.Worksheets.get_Item(1);
-           //     newWorksheet.Cells[1, 1] = "test";
-           //     newWorkbook.SaveAs(@"C:\Users\Razma\Desktop\test.xls");
-           //     newWorkbook.Close();
-           // }
-           //catch()
-           // {
-           //}
-        
+            //Il faut la reicrire pour parcourir la liste
+                Workbook newWorkbook;
+                Worksheet newWorksheet;
+                newWorkbook = App.Workbooks.Add();
+                newWorksheet = (Worksheet)newWorkbook.Worksheets.Item[1];
+                newWorksheet.Cells[1, 1] = "test";
+                newWorkbook.SaveAs(Destination + @"\" + FileName + ".xls");
+                newWorkbook.Close();
+                App.Quit();
+         
+         
         }
-       //private ~ExcelWrapper()
-       //{
-       //    Wrb.Close();
-       //    App.Close();
-       // }
+
+        public  System.Collections.Specialized.StringCollection GetAllData()
+        {
+            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+           
+        
+            for (int i = 1; i < Wrs.UsedRange.Rows.Count; i++)
+            {
+               for (int j = 1; j<Wrs.UsedRange.Columns.Count ; j++)
+               {
+                  Data.Add(GetCell(i, j));
+               }
+           
+            }
+            return Data;
+
+         
+           
+        }
+       ~ExcelWrapper()
+        {
+           Wrb.Close();
+           App.Quit();
+         
+        }
 
 
     }
