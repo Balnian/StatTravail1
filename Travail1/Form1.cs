@@ -58,18 +58,10 @@ namespace Travail1
         private void BT_Executer_Click(object sender, EventArgs e)
         {
 
-<<<<<<< HEAD
-            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
-            ExcelWrapper EW = new ExcelWrapper(TB_Source.Text, "Baba");
-            EW.Open();
-            Data = EW.GetLine(1);
-            foreach (string OBJ in Data)
-            {
 
-               MessageBox.Show(OBJ);
-            }
+          
         
-=======
+
 
            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
 
@@ -114,7 +106,7 @@ namespace Travail1
         private void BT_Sortie_Click(object sender, EventArgs e)
         {
             SavedFile();
->>>>>>> origin/master
+
         }
     }
 }

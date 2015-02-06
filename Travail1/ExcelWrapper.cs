@@ -35,12 +35,8 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-<<<<<<< HEAD
-            for (int i = 1; i < Wrs.Columns.Count ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
-=======
-       
+                  
              for (int i = 1; i < Wrs.UsedRange.Columns.Count ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
->>>>>>> origin/master
             {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
@@ -53,11 +49,10 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-<<<<<<< HEAD
-            for (int i = 1; i < 2  && Wrs.Cells.Value2 != null; i++)
-=======
+
+           
+
             for (int i = 1; i < Wrs.UsedRange.Rows.Count  ; i++)
->>>>>>> origin/master
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;
@@ -85,9 +80,7 @@ namespace Travail1
                 newWorksheet.Cells[1, 1] = "test";
                 newWorkbook.SaveAs(Destination + @"\" + FileName + ".xls");
                 newWorkbook.Close();
-                App.Quit();
-         
-         
+                App.Quit();                 
         }
 
         public  System.Collections.Specialized.StringCollection GetAllData()
