@@ -83,23 +83,45 @@ namespace Travail1
                 App.Quit();                 
         }
 
-        public  System.Collections.Specialized.StringCollection GetAllData()
+        public  String[] GetAllData()
         {
-            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+            //System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+
+            Excel.Range range = Wrs.get_Range(Wrs.UsedRange);
+            System.Array myvalues = (System.Array)range.Cells.Value;
+            string[] strArray = ConvertToStringArray(myvalues);
+
+            return strArray;
+
+            //for (int i = 1; i < Wrs.UsedRange.Rows.Count; i++)
+            //{
+            //   for (int j = 1; j<Wrs.UsedRange.Columns.Count ; j++)
+            //   {
+            //      Data.Add(GetCell(i, j));
+            //   }
            
-        
-            for (int i = 1; i < Wrs.UsedRange.Rows.Count; i++)
-            {
-               for (int j = 1; j<Wrs.UsedRange.Columns.Count ; j++)
-               {
-                  Data.Add(GetCell(i, j));
-               }
-           
-            }
-            return Data;
+            //}
+            //return Data;
 
          
            
+        }
+        private string[] ConvertToStringArray(System.Array values)
+        {
+
+            // create a new string array
+            string[] theArray = new string[values.Length];
+
+            // loop through the 2-D System.Array and populate the 1-D String Array
+            for (int i = 1; i <= values.Length; i++)
+            {
+                if (values.GetValue(1, i) == null)
+                    theArray[i - 1] = "";
+                else
+                    theArray[i - 1] = (string)values.GetValue(1, i).ToString();
+            }
+
+            return theArray;
         }
        ~ExcelWrapper()
         {

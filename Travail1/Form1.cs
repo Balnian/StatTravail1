@@ -67,12 +67,16 @@ namespace Travail1
 
            ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
            EW.Open();
-           Data = EW.GetAllData();
-          
+           for (int i = 1; i <= 100; i++)
+           {
+               Data.AddRange(EW.GetAllData());
+           }
+
+
            foreach (String data in Data)
            {
-              Info.Add(data);
-              MessageBox.Show(data);
+               
+               MessageBox.Show(data);
            }          
           
         }
@@ -93,7 +97,7 @@ namespace Travail1
         private void ReadInfo()
         {
            ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
-           System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+           String[] Data ;
            EW.Open();
            Data = EW.GetAllData();
 
