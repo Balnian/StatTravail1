@@ -34,7 +34,7 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 1; i < 3 ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+            for (int i = 1; i < Wrs.Columns.Count ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
             {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
@@ -48,7 +48,7 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 1; i < Wrs.Rows.Count  && Wrs.Cells.Value2 != null; i++)
+            for (int i = 1; i < 2  && Wrs.Cells.Value2 != null; i++)
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;

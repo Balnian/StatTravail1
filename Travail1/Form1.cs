@@ -44,14 +44,14 @@ namespace Travail1
 
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             ExcelWrapper EW = new ExcelWrapper(TB_Source.Text, "Baba");
-            //EW.Open();
-            //Data = EW.GetLine(1);
-            //foreach( string OBJ in Data)
-            //{
+            EW.Open();
+            Data = EW.GetLine(1);
+            foreach (string OBJ in Data)
+            {
 
-            //    MessageBox.Show(OBJ);
-            //}
-            EW.Write();
+               MessageBox.Show(OBJ);
+            }
+        
         }
     }
 }
