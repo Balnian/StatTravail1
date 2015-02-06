@@ -58,10 +58,19 @@ namespace Travail1
         private void BT_Executer_Click(object sender, EventArgs e)
         {
 
-           
-        
 
-            
+           System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+
+           ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
+           EW.Open();
+           Data = EW.GetAllData();
+          
+           foreach (String data in Data)
+           {
+              Info.Add(data);
+              MessageBox.Show(data);
+           }          
+          
         }
 
         private void SystematiqueFunction()
@@ -79,8 +88,9 @@ namespace Travail1
         }
         private void ReadInfo()
         {
-           ExcelWrapper EW = new ExcelWrapper(Sources, Destination, TB_Nom.Text);
+           ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+           EW.Open();
            Data = EW.GetAllData();
 
            foreach (String data in Data)
