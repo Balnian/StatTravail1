@@ -86,7 +86,7 @@ namespace Travail1
         public  String[] GetAllData()
         {
             //System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
-
+           
             Excel.Range range = Wrs.get_Range(Wrs.UsedRange);
             System.Array myvalues = (System.Array)range.Cells.Value;
             string[] strArray = ConvertToStringArray(myvalues);
@@ -105,7 +105,7 @@ namespace Travail1
 
          
            
-        }
+            }
         private string[] ConvertToStringArray(System.Array values)
         {
 
