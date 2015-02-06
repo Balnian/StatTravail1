@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
-
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace Travail1
 {
     class ExcelWrapper
@@ -13,15 +14,17 @@ namespace Travail1
         private Workbook Wrb;
         private Worksheet Wrs;
         private String PathSource;
+        private String Destination;
         private String Name;
         private System.Collections.Specialized.StringCollection Data2;
         public int Length {get;set;}
         public int Width{get;set;}
-        public ExcelWrapper(String Source, String Name)
+        public ExcelWrapper(String Source, String Destination)
         {
             PathSource = Source;
-            this.Name = Name; 
-            //App = App.Workbooks.Open("csharp.net-informations.xls", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            this.Destination = Destination;
+            
+
         }
         public void Open()
         {
@@ -49,7 +52,7 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 1; i < Wrs.Rows.Count  && Wrs.Cells.Value2 != null; i++)
+            for (int i = 1; i < 2  ; i++)
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;
@@ -63,24 +66,38 @@ namespace Travail1
             Range carry;
             carry = Wrs.Cells[Line, Col];
             object OBJ = carry.Value2;
+
             return OBJ.ToString();
- 
         }
 
-        public void  Write()
+        public void  Write(List<object> data, String FileName)
         {
-
+            //Il faut la reicrire pour parcourir la liste
                 Workbook newWorkbook;
                 Worksheet newWorksheet;
                 object misValue = System.Reflection.Missing.Value;
                 newWorkbook = App.Workbooks.Add();
                 newWorksheet = (Worksheet)newWorkbook.Worksheets.Item[1];
                 newWorksheet.Cells[1, 1] = "test";
-                newWorkbook.SaveAs(@"C:\Users\Razma\Desktop\testtt.xls");
+                newWorkbook.SaveAs(Destination + @"\" + FileName + ".xls");
                 newWorkbook.Close();
                 App.Quit();
          
          
+        }
+
+        public  System.Collections.Specialized.StringCollection GetAllData()
+        {
+            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+
+            for (int i = 0; i < Wrs.UsedRange.Row; i++)
+            {
+                for (int j = 0; j  < Wrs.UsedRange.Column; j ++)
+                {
+                    Data.Add(GetCell(i, j));
+                }
+            }
+            return Data;
         }
        //private ~ExcelWrapper() 
        //{
