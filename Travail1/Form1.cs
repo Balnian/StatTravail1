@@ -15,6 +15,7 @@ namespace Travail1
         private String Destination;
         private String Sources;
         private List<string> Info = new List<string>();
+        private int[] Number;
         public Form1()
         {
             InitializeComponent();
@@ -59,9 +60,27 @@ namespace Travail1
         {
 
            
+
+          
         
 
-            
+
+           System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+
+           ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
+           EW.Open();
+           for (int i = 1; i <= 100; i++)
+           {
+               Data.AddRange(EW.GetAllData());
+           }
+
+
+           foreach (String data in Data)
+           {
+               
+               MessageBox.Show(data);
+           }          
+          
         }
 
         private void SystematiqueFunction()
@@ -77,10 +96,22 @@ namespace Travail1
         
         
         }
+
+        private int GenerateRandom()
+        {
+          Random rnd = new Random();
+          return rnd.Next(1, 2);
+        
+        }
         private void ReadInfo()
         {
            ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
+<<<<<<< HEAD
            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+=======
+           String[] Data ;
+           EW.Open();
+>>>>>>> origin/master
            Data = EW.GetAllData();
 
            foreach (String data in Data)
@@ -92,6 +123,7 @@ namespace Travail1
         private void BT_Sortie_Click(object sender, EventArgs e)
         {
             SavedFile();
+
         }
     }
 }

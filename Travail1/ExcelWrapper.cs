@@ -22,13 +22,11 @@ namespace Travail1
         public ExcelWrapper(String Source, String Destination)
         {
             PathSource = Source;
-            this.Destination = Destination;
-            
+            this.Destination = Destination;           
 
         }
         public void Open()
-        {
-               
+        {              
             Wrb =   App.Workbooks.Open(PathSource);
             Wrs = Wrb.ActiveSheet;         
         }
@@ -37,12 +35,11 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-       
-             for (int i = 1; i <3 ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+                  
+             for (int i = 1; i < Wrs.UsedRange.Columns.Count ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
             {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
-
                 Data.Add(OBJ.ToString());
             }
             return Data;
@@ -52,7 +49,10 @@ namespace Travail1
         {
             System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
             Range carry;
-            for (int i = 1; i < 2  ; i++)
+
+           
+
+            for (int i = 1; i < Wrs.UsedRange.Rows.Count  ; i++)
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;
@@ -75,35 +75,60 @@ namespace Travail1
             //Il faut la reicrire pour parcourir la liste
                 Workbook newWorkbook;
                 Worksheet newWorksheet;
-                object misValue = System.Reflection.Missing.Value;
                 newWorkbook = App.Workbooks.Add();
                 newWorksheet = (Worksheet)newWorkbook.Worksheets.Item[1];
                 newWorksheet.Cells[1, 1] = "test";
                 newWorkbook.SaveAs(Destination + @"\" + FileName + ".xls");
                 newWorkbook.Close();
-                App.Quit();
-         
-         
+                App.Quit();                 
         }
 
-        public  System.Collections.Specialized.StringCollection GetAllData()
+        public  String[] GetAllData()
         {
-            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+            //System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+           
+            Excel.Range range = Wrs.get_Range(Wrs.UsedRange);
+            System.Array myvalues = (System.Array)range.Cells.Value;
+            string[] strArray = ConvertToStringArray(myvalues);
 
-            for (int i = 0; i < Wrs.UsedRange.Row; i++)
-            {
-                for (int j = 0; j  < Wrs.UsedRange.Column; j ++)
-                {
-                    Data.Add(GetCell(i, j));
-                }
+            return strArray;
+
+            //for (int i = 1; i < Wrs.UsedRange.Rows.Count; i++)
+            //{
+            //   for (int j = 1; j<Wrs.UsedRange.Columns.Count ; j++)
+            //   {
+            //      Data.Add(GetCell(i, j));
+            //   }
+           
+            //}
+            //return Data;
+
+         
+           
             }
-            return Data;
+        private string[] ConvertToStringArray(System.Array values)
+        {
+
+            // create a new string array
+            string[] theArray = new string[values.Length];
+
+            // loop through the 2-D System.Array and populate the 1-D String Array
+            for (int i = 1; i <= values.Length; i++)
+            {
+                if (values.GetValue(1, i) == null)
+                    theArray[i - 1] = "";
+                else
+                    theArray[i - 1] = (string)values.GetValue(1, i).ToString();
+            }
+
+            return theArray;
         }
-       //private ~ExcelWrapper() 
-       //{
-       //    Wrb.Close();
-       //    App.Close();
-       // }
+       ~ExcelWrapper()
+        {
+           Wrb.Close();
+           App.Quit();
+         
+        }
 
 
     }
