@@ -79,7 +79,7 @@ namespace Travail1
         }
         private void ReadInfo()
         {
-           ExcelWrapper EW = new ExcelWrapper(Sources, Destination, TB_Nom.Text);
+           ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
            Data = EW.GetAllData();
 
