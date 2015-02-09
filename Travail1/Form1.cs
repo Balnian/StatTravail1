@@ -121,9 +121,9 @@ namespace Travail1
             {
                 do
                 {
-                    Rnumber =  GenerateRandom(e.GetNbRows());
-                    Number[i] = Rnumber;
-                } while (!Verif(Number,Rnumber));            
+                    Rnumber =  GenerateRandom(e.GetNbRows());                   
+                } while (Verif(Number,Rnumber));
+                Number[i] = Rnumber;
             }        
         }
 
