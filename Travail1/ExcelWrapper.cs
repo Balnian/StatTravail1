@@ -30,33 +30,32 @@ namespace Travail1
             Wrb =   App.Workbooks.Open(PathSource);
             Wrs = Wrb.ActiveSheet;         
         }
-        
-        public System.Collections.Specialized.StringCollection GetLine(int Line)
+
+        public String[] GetLine(int Line)
         {
-            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+            String[] Data = new String[Wrs.UsedRange.Columns.Count];
             Range carry;
-                  
-             for (int i = 1; i < Wrs.UsedRange.Columns.Count ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+            int j = 0;     
+             for (int i = 1; i < Wrs.UsedRange.Columns.Count - 1 ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
             {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
-                Data.Add(OBJ.ToString());
+                Data[j] = (OBJ.ToString());
+                j++;
             }
             return Data;
         }
 
-        public System.Collections.Specialized.StringCollection GetColumn(int Col)
+        public String[] GetColumn(int Col)
         {
-            System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
+            String[] Data = new String[Wrs.UsedRange.Rows.Count];
             Range carry;
-
-           
 
             for (int i = 1; i < Wrs.UsedRange.Rows.Count  ; i++)
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;
-                Data.Add(OBJ.ToString());
+                Data[i]= (OBJ.ToString());
             }
             return Data;
         }
@@ -70,17 +69,21 @@ namespace Travail1
             return OBJ.ToString();
         }
 
-        public void  Write(List<object> data, String FileName)
+        public void  Write(String[,] data,int Line,int column, String FileName)
         {
             //Il faut la reicrire pour parcourir la liste
-                Workbook newWorkbook;
-                Worksheet newWorksheet;
-                newWorkbook = App.Workbooks.Add();
-                newWorksheet = (Worksheet)newWorkbook.Worksheets.Item[1];
-                newWorksheet.Cells[1, 1] = "test";
-                newWorkbook.SaveAs(Destination + @"\" + FileName + ".xls");
-                newWorkbook.Close();
-                App.Quit();                 
+            Wrb = App.Workbooks.Add();
+            Wrs = (Worksheet)Wrb.Worksheets.Item[1];
+            for (int i = 0; i < Line; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    Wrs.Cells[i + 1, j + 1] = data[i,j];
+                }
+            }
+              
+                Wrb.SaveAs(Destination + @"\" + FileName + ".xls");
+               
         }
 
         public  String[] GetAllData()
@@ -91,20 +94,7 @@ namespace Travail1
             System.Array myvalues = (System.Array)range.Cells.Value;
             string[] strArray = ConvertToStringArray(myvalues);
 
-            return strArray;
-
-            //for (int i = 1; i < Wrs.UsedRange.Rows.Count; i++)
-            //{
-            //   for (int j = 1; j<Wrs.UsedRange.Columns.Count ; j++)
-            //   {
-            //      Data.Add(GetCell(i, j));
-            //   }
-           
-            //}
-            //return Data;
-
-         
-           
+            return strArray;           
             }
         private string[] ConvertToStringArray(System.Array values)
         {
@@ -126,10 +116,19 @@ namespace Travail1
        ~ExcelWrapper()
         {
            Wrb.Close();
-           App.Quit();
-         
+           App.Quit();        
         }
 
-
+       public int GetNbRows()
+       {
+          int rows = Wrs.UsedRange.Rows.Count;
+          return rows;
+       
+       }
+       public int GetnbColumns()
+       {
+           int Column = Wrs.UsedRange.Columns.Count;
+           return Column;       
+       }
     }
 }

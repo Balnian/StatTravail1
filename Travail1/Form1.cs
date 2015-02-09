@@ -30,28 +30,24 @@ namespace Travail1
         {
             OpenFileDialog OpenFile = new OpenFileDialog();
             OpenFile.Filter = "Fichier Excel (*.xlsx)|*.xlsx|CSV (*.csv)|*.csv";
-            //OpenFile.InitialDirectory = getLastDirectory();
+           
             if (OpenFile.ShowDialog() == DialogResult.OK)
             {
                 if ((TB_Source.Text = OpenFile.FileName) != "")
-                {
-                   // Properties.Settings.Default.LastSaveDirectory = CurrentFile.Remove(CurrentFile.LastIndexOf('\\'));
-                   // OpenData();
+                {                 
                     Sources = OpenFile.FileName;
-                }
-                //AddRecentFile(OpenFile.FileName);
+                }            
             }
         }
 
         private void SavedFile()
         {
-
-            SaveFileDialog savedFile = new SaveFileDialog();
+            FolderBrowserDialog savedFile = new FolderBrowserDialog();
             if (savedFile.ShowDialog() == DialogResult.OK)
             {
-                if ((TB_Sortie.Text = savedFile.FileName)!= "")
+                if ((TB_Sortie.Text = savedFile.SelectedPath)!= "")
                 {
-                    Destination = savedFile.FileName;
+                    Destination = savedFile.SelectedPath;
                 }           
             }       
         }
@@ -59,27 +55,18 @@ namespace Travail1
         private void BT_Executer_Click(object sender, EventArgs e)
         {
 
-           
-
-          
-        
-
-
-           System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
-
+            Number = new int[int.Parse(NUD_Taille.Value.ToString())];
            ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
+           ExcelWrapper Ewr = new ExcelWrapper(Sources, Destination);
            EW.Open();
-           for (int i = 1; i <= 100; i++)
+           //Ewr.Open();
+           GetRandomNumber(EW);
+        
+           for (int i = 0; i < NUD_Copie.Value; i++)
            {
-               Data.AddRange(EW.GetAllData());
+               Ewr.Write(ReadInfo(EW, Number), int.Parse(NUD_Taille.Value.ToString()), EW.GetNbRows(), TB_Nom.Text);
            }
-
-
-           foreach (String data in Data)
-           {
-               
-               MessageBox.Show(data);
-           }          
+           
           
         }
 
@@ -97,33 +84,57 @@ namespace Travail1
         
         }
 
-        private int GenerateRandom()
+        private int GenerateRandom(int Max)
         {
           Random rnd = new Random();
-          return rnd.Next(1, 2);
+          return rnd.Next(1, Max);
         
         }
-        private void ReadInfo()
-        {
-           ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
-<<<<<<< HEAD
-           System.Collections.Specialized.StringCollection Data = new System.Collections.Specialized.StringCollection();
-=======
-           String[] Data ;
-           EW.Open();
->>>>>>> origin/master
-           Data = EW.GetAllData();
-
-           foreach (String data in Data)
-           { 
-            Info.Add(data);         
-           }
+        private String[,] ReadInfo(ExcelWrapper EW , int[] Ligne)
+        {   
+           String[,] Data  = new String [Ligne.Length,EW.GetnbColumns()];
+           String [] carry;
+            int w = 1; //pas le choix sinon avec ma boucle je commence a 0 et boom
+          // EW.Open();
+            
+           for (int i = 0; i < Ligne.Length; i++)
+			{
+               for (int j = 0; j < EW.GetnbColumns(); j++)
+			    {
+                   carry = EW.GetLine(Ligne[w]); //out of range ici je sais pas encore pourquoi
+                   Data[i, j] = carry[j];
+                   w++;
+			    }			    
+			}     
+           return Data;
         
         }
         private void BT_Sortie_Click(object sender, EventArgs e)
         {
             SavedFile();
 
+        }
+        private void GetRandomNumber(ExcelWrapper e)
+        {           
+            int Rnumber;
+            for (int i = 0; i < NUD_Taille.Value; i++)
+            {
+                do
+                {
+                    Rnumber =  GenerateRandom(e.GetNbRows());
+                    Number[i] = Rnumber;
+                } while (!Verif(Number,Rnumber));            
+            }        
+        }
+
+        private bool Verif(int[] array,int Rnumber)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == Rnumber)
+                    return true;
+            }
+            return false;
         }
     }
 }
