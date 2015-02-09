@@ -82,8 +82,7 @@ namespace Travail1
                 }
             }
               
-                Wrb.SaveAs(Destination + @"\" + FileName + ".xls");
-               
+                Wrb.SaveAs(Destination + @"\" + FileName + ".xls");             
         }
 
         public  String[] GetAllData()

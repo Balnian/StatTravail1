@@ -138,9 +138,7 @@ namespace Travail1
             for (int i = 1; i < NUD_Taille.Value % e.GetNbRows(); i++)
             {
                 Number[i] = Nrandom += ( e.GetNbRows() / Nrandom );
-            }
-        
-        
+            }              
         }
     }
 }
