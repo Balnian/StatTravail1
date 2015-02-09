@@ -36,7 +36,7 @@ namespace Travail1
             String[] Data = new String[Wrs.UsedRange.Columns.Count];
             Range carry;
             int j = 0;     
-             for (int i = 1; i < Wrs.UsedRange.Columns.Count - 1 ; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
+             for (int i = 1; i <= Wrs.UsedRange.Columns.Count; i++) //trouvons pourvoir column.count ne marche pas il depassse toujours 
             {
                 carry = Wrs.Cells[Line, i];
                 object OBJ = carry.Value2;
@@ -51,7 +51,7 @@ namespace Travail1
             String[] Data = new String[Wrs.UsedRange.Rows.Count];
             Range carry;
 
-            for (int i = 1; i < Wrs.UsedRange.Rows.Count  ; i++)
+            for (int i = 1; i <= Wrs.UsedRange.Rows.Count  ; i++)
             {
                 carry = Wrs.Cells[i, Col];
                 object OBJ = carry.Value2;

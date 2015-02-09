@@ -135,9 +135,9 @@ namespace Travail1
         {
             int Nrandom = GenerateRandom(e.GetNbRows());
             Number[0] =  Nrandom;
-            for (int i = 1; i < NUD_Taille.Value; i++)
+            for (int i = 1; i < NUD_Taille.Value % e.GetNbRows(); i++)
             {
-                Number[i] = Nrandom += (Nrandom / e.GetNbRows() ) % e.GetNbRows();
+                Number[i] = Nrandom += ( e.GetNbRows() / Nrandom );
             }
         
         
