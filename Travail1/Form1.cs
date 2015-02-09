@@ -64,7 +64,7 @@ namespace Travail1
         
            for (int i = 0; i < NUD_Copie.Value; i++)
            {
-               Ewr.Write(ReadInfo(EW, Number), int.Parse(NUD_Taille.Value.ToString()), EW.GetNbRows(), TB_Nom.Text);
+               Ewr.Write(ReadInfo(EW, Number), int.Parse(NUD_Taille.Value.ToString()), EW.GetnbColumns(), TB_Nom.Text + i + 1);
            }
            
           
@@ -93,18 +93,19 @@ namespace Travail1
         private String[,] ReadInfo(ExcelWrapper EW , int[] Ligne)
         {   
            String[,] Data  = new String [Ligne.Length,EW.GetnbColumns()];
-           String [] carry;
-            int w = 1; //pas le choix sinon avec ma boucle je commence a 0 et boom
+           String[] carry = new String[EW.GetnbColumns()];
+            int w = 0; //pas le choix sinon avec ma boucle je commence a 0 et boom
           // EW.Open();
             
            for (int i = 0; i < Ligne.Length; i++)
-			{
-               for (int j = 0; j < EW.GetnbColumns(); j++)
-			    {
+			{           
                    carry = EW.GetLine(Ligne[w]); //out of range ici je sais pas encore pourquoi
+                   for (int j = 0; j < EW.GetnbColumns(); j++)
+			    {
                    Data[i, j] = carry[j];
-                   w++;
-			    }			    
+                  
+			    }
+               w++;
 			}     
            return Data;
         
