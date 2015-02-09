@@ -54,34 +54,29 @@ namespace Travail1
 
         private void BT_Executer_Click(object sender, EventArgs e)
         {
+              Number = new int[int.Parse(NUD_Taille.Value.ToString())];
+              ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
+              ExcelWrapper Ewr = new ExcelWrapper(Sources, Destination);
+              EW.Open();
+            if (RB_Simple.Checked)
+                AleatoirFunction(EW);
+            else
+                SystematiqueFunction(EW);
 
-            Number = new int[int.Parse(NUD_Taille.Value.ToString())];
-           ExcelWrapper EW = new ExcelWrapper(Sources, Destination);
-           ExcelWrapper Ewr = new ExcelWrapper(Sources, Destination);
-           EW.Open();
-           //Ewr.Open();
-           GetRandomNumber(EW);
-        
-           for (int i = 0; i < NUD_Copie.Value; i++)
-           {
-               Ewr.Write(ReadInfo(EW, Number), int.Parse(NUD_Taille.Value.ToString()), EW.GetnbColumns(), TB_Nom.Text + i + 1);
-           }
-           
-          
+            for (int i = 0; i < NUD_Copie.Value; i++)
+            {
+                Ewr.Write(ReadInfo(EW, Number), int.Parse(NUD_Taille.Value.ToString()), EW.GetnbColumns(), TB_Nom.Text + (i + 1));
+            }         
         }
 
-        private void SystematiqueFunction()
-        { 
-        
-        
-        
-        
+        private void SystematiqueFunction(ExcelWrapper EW)
+        {
+            GetSystematicNumber(EW);        
         }
 
-        private void AleatoirFunction()
-        { 
-        
-        
+        private void AleatoirFunction(ExcelWrapper EW)
+        {
+            GetRandomNumber(EW);     
         }
 
         private int GenerateRandom(int Max)
@@ -95,15 +90,13 @@ namespace Travail1
            String[,] Data  = new String [Ligne.Length,EW.GetnbColumns()];
            String[] carry = new String[EW.GetnbColumns()];
             int w = 0; //pas le choix sinon avec ma boucle je commence a 0 et boom
-          // EW.Open();
-            
+                   
            for (int i = 0; i < Ligne.Length; i++)
 			{           
                    carry = EW.GetLine(Ligne[w]); //out of range ici je sais pas encore pourquoi
                    for (int j = 0; j < EW.GetnbColumns(); j++)
 			    {
-                   Data[i, j] = carry[j];
-                  
+                   Data[i, j] = carry[j];                 
 			    }
                w++;
 			}     
@@ -122,7 +115,7 @@ namespace Travail1
             {
                 do
                 {
-                    Rnumber =  GenerateRandom(e.GetNbRows());                   
+                   Rnumber =  GenerateRandom(e.GetNbRows());                   
                 } while (Verif(Number,Rnumber));
                 Number[i] = Rnumber;
             }        
@@ -136,6 +129,18 @@ namespace Travail1
                     return true;
             }
             return false;
+        }
+
+        private void GetSystematicNumber(ExcelWrapper e)
+        {
+            int Nrandom = GenerateRandom(e.GetNbRows());
+            Number[0] =  Nrandom;
+            for (int i = 1; i < NUD_Taille.Value; i++)
+            {
+                Number[i] = Nrandom += (Nrandom / e.GetNbRows() ) % e.GetNbRows();
+            }
+        
+        
         }
     }
 }
