@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
 namespace Travail1
 {
     class ExcelWrapper
@@ -17,6 +18,7 @@ namespace Travail1
         private String Destination;
         private String Name;
         private System.Collections.Specialized.StringCollection Data2;
+        private Boolean Closed = true;
         public int Length {get;set;}
         public int Width{get;set;}
         public ExcelWrapper(String Source, String Destination)
@@ -26,7 +28,8 @@ namespace Travail1
 
         }
         public void Open()
-        {              
+        {
+            Closed = false;
             Wrb =   App.Workbooks.Open(PathSource);
             Wrs = Wrb.ActiveSheet;         
         }
@@ -71,6 +74,7 @@ namespace Travail1
 
         public void  Write(String[,] data,int Line,int column, String FileName)
         {
+            Closed = false;
             //Il faut la reicrire pour parcourir la liste
             Wrb = App.Workbooks.Add();
             Wrs = (Worksheet)Wrb.Worksheets.Item[1];
@@ -112,10 +116,47 @@ namespace Travail1
 
             return theArray;
         }
+
+        public void Close(bool saveChange = false, string SaveName="")
+        {
+            if (!Closed)
+            {
+
+                
+                if (saveChange && !String.IsNullOrEmpty(SaveName) && Directory.Exists(SaveName))
+                {
+                    Wrb.Close(saveChange, SaveName);
+                    App.Quit();
+                }
+                else
+                {
+                    
+                    Wrb.Close(false);
+                    App.Quit();
+                }
+                releaseObj(Wrs);
+                releaseObj(Wrb);
+                releaseObj(App);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Closed = true;
+            }
+        }
+        private void releaseObj(object o)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(o);
+            }
+            catch { }
+            finally
+            {
+                o = null;
+            }
+        }
        ~ExcelWrapper()
         {
-           Wrb.Close();
-           App.Quit();        
+            Close();      
         }
 
        public int GetNbRows()

@@ -66,7 +66,9 @@ namespace Travail1
             for (int i = 0; i < NUD_Copie.Value; i++)
             {
                 Ewr.Write(ReadInfo(EW, Number), int.Parse(NUD_Taille.Value.ToString()), EW.GetnbColumns(), TB_Nom.Text + (i + 1));
-            }         
+            }
+            EW.Close();
+            Ewr.Close();
         }
 
         private void SystematiqueFunction(ExcelWrapper EW)
@@ -115,7 +117,7 @@ namespace Travail1
             {
                 do
                 {
-                   Rnumber =  GenerateRandom(e.GetNbRows());                   
+                   Rnumber =  GenerateRandom(e.GetNbRows()-1)+1;                   
                 } while (Verif(Number,Rnumber));
                 Number[i] = Rnumber;
             }        
@@ -123,21 +125,27 @@ namespace Travail1
 
         private bool Verif(int[] array,int Rnumber)
         {
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i] == Rnumber)
-                    return true;
-            }
-            return false;
+            return array.Contains(Rnumber);
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    if (array[i] == Rnumber)
+            //        return true;
+            //}
+            //return false;
         }
 
         private void GetSystematicNumber(ExcelWrapper e)
         {
-            int Nrandom = GenerateRandom(e.GetNbRows());
+
+            
+            int Step = e.GetNbRows()-1 / (int)NUD_Taille.Value;
+            int Nrandom = GenerateRandom(Step)+1;
+
+
             Number[0] =  Nrandom;
-            for (int i = 1; i < NUD_Taille.Value % e.GetNbRows(); i++)
+            for (int i = 1; i < NUD_Taille.Value; i++)
             {
-                Number[i] = Nrandom += ( e.GetNbRows() / Nrandom );
+                Number[i] = Nrandom + Step*i;
             }              
         }
     }
