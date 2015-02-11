@@ -58,6 +58,7 @@
             // RB_Simple
             // 
             this.RB_Simple.AutoSize = true;
+            this.RB_Simple.Checked = true;
             this.RB_Simple.Location = new System.Drawing.Point(6, 19);
             this.RB_Simple.Name = "RB_Simple";
             this.RB_Simple.Size = new System.Drawing.Size(100, 17);
@@ -104,9 +105,24 @@
             this.NUD_Taille.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NUD_Taille.Location = new System.Drawing.Point(24, 28);
+            this.NUD_Taille.Maximum = new decimal(new int[] {
+            276447232,
+            23283,
+            0,
+            0});
+            this.NUD_Taille.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.NUD_Taille.Name = "NUD_Taille";
             this.NUD_Taille.Size = new System.Drawing.Size(82, 20);
             this.NUD_Taille.TabIndex = 0;
+            this.NUD_Taille.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // groupBox3
             // 
@@ -142,9 +158,19 @@
             // NUD_Copie
             // 
             this.NUD_Copie.Location = new System.Drawing.Point(157, 40);
+            this.NUD_Copie.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.NUD_Copie.Name = "NUD_Copie";
             this.NUD_Copie.Size = new System.Drawing.Size(91, 20);
             this.NUD_Copie.TabIndex = 1;
+            this.NUD_Copie.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // TB_Nom
             // 
@@ -152,6 +178,7 @@
             this.TB_Nom.Name = "TB_Nom";
             this.TB_Nom.Size = new System.Drawing.Size(100, 20);
             this.TB_Nom.TabIndex = 0;
+            this.TB_Nom.TextChanged += new System.EventHandler(this.TB_Nom_TextChanged);
             // 
             // groupBox4
             // 
@@ -194,6 +221,7 @@
             this.TB_Sortie.Name = "TB_Sortie";
             this.TB_Sortie.Size = new System.Drawing.Size(156, 20);
             this.TB_Sortie.TabIndex = 3;
+            this.TB_Sortie.TextChanged += new System.EventHandler(this.TB_Sortie_TextChanged);
             // 
             // BT_Source
             // 
@@ -221,6 +249,7 @@
             this.TB_Source.Name = "TB_Source";
             this.TB_Source.Size = new System.Drawing.Size(156, 20);
             this.TB_Source.TabIndex = 0;
+            this.TB_Source.TextChanged += new System.EventHandler(this.TB_Source_TextChanged);
             // 
             // BT_Executer
             // 
@@ -240,6 +269,7 @@
             this.BT_Quitter.TabIndex = 7;
             this.BT_Quitter.Text = "Quitter";
             this.BT_Quitter.UseVisualStyleBackColor = true;
+            this.BT_Quitter.Click += new System.EventHandler(this.BT_Quitter_Click);
             // 
             // Form1
             // 

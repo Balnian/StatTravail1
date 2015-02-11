@@ -148,5 +148,34 @@ namespace Travail1
                 Number[i] = Nrandom + Step*i;
             }              
         }
+
+        private bool AllEntryValide()
+        {
+            Boolean valide = false;
+            valide |= String.IsNullOrEmpty(TB_Nom.Text);
+            valide |= String.IsNullOrEmpty(TB_Source.Text) || !System.IO.Directory.Exists(TB_Source.Text);
+            valide |= String.IsNullOrEmpty(TB_Sortie.Text) || !System.IO.Directory.Exists(TB_Sortie.Text);
+            return !valide;
+        }
+
+        private void BT_Quitter_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void TB_Nom_TextChanged(object sender, EventArgs e)
+        {
+            BT_Executer.Enabled = AllEntryValide();
+        }
+
+        private void TB_Source_TextChanged(object sender, EventArgs e)
+        {
+            BT_Executer.Enabled = AllEntryValide();
+        }
+
+        private void TB_Sortie_TextChanged(object sender, EventArgs e)
+        {
+            BT_Executer.Enabled = AllEntryValide();
+        }
     }
 }
