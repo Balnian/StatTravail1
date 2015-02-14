@@ -110,6 +110,11 @@ namespace Travail1
             SavedFile();
 
         }
+
+        /// <summary>
+        /// Génère une liste de liqne pointant sur les lignes choisi pour faire partie de l'échantillon de manière aléatoire
+        /// </summary>
+        /// <param name="e"></param>
         private void GetRandomNumber(ExcelWrapper e)
         {           
             int Rnumber;
@@ -134,6 +139,10 @@ namespace Travail1
             //return false;
         }
 
+        /// <summary>
+        /// Génère une liste de liqne pointant sur les lignes choisi pour faire partie de l'échantillon de manière systematique
+        /// </summary>
+        /// <param name="e"></param>
         private void GetSystematicNumber(ExcelWrapper e)
         {
 
